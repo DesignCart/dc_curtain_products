@@ -1,0 +1,5 @@
+<h1>DC Curtain Products for OpenCart 4</h1>
+<p>DC Curtain Products is a premium-style product module for OpenCart 4 that introduces an animated SVG "curtain hover" effect ✨. When the user hovers over a product, the module smoothly morphs an SVG mask to reveal product details, options and action buttons &mdash; creating a unique, high-end browsing experience 🎭.</p>
+<p>The module combines a visually striking interface with lightweight, optimized performance. It features AJAX add-to-cart, wishlist and compare actions ⚡, dynamic product options 🎨 and a responsive product grid with a premium offset layout 🧩. All assets are automatically minified and loaded efficiently thanks to the built-in CSS/JS optimizer 🚀.</p>
+<p>You can download the module or read more about it on Design Cart:<br/> <a href="https://www.designcart.pl/laboratorium/273-dc-curtain-products-modul-produktowy-z-animacja-svg-curtain-hover.html">https://www.designcart.pl/laboratorium/273-dc-curtain-products-modul-produktowy-z-animacja-svg-curtain-hover.html</a></p>
+<p>Discover more modules, tools and tutorials:<br/> <a href="https://www.designcart.pl">https://www.designcart.pl</a></p>
