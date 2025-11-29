@@ -1,0 +1,86 @@
+{# --- Status (Standardowe pole) --- #}
+<div class="row mb-3">
+    <label for="input-status" class="col-sm-2 col-form-label">{{ entry_status }}</label>
+    <div class="col-sm-10">
+        <select name="status" id="input-status" class="form-select">
+            {% if status %}
+                <option value="1" selected>{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+            {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected>{{ text_disabled }}</option>
+            {% endif %}
+        </select>
+    </div>
+</div>
+
+{# --- Tryb Działania (Wymagane) --- #}
+<div class="row mb-3 required">
+    <label for="input-module-type" class="col-sm-2 col-form-label">{{ entry_module_type }}</label>
+    <div class="col-sm-10">
+        <select name="module_type" id="input-module-type" class="form-select">
+            
+            {# Uproszczona, stała lista opcji zamiast pętli #}
+            <option value="latest" {% if 'latest' == module_type %}selected{% endif %}>
+                {{ text_module_type_latest }}
+            </option>
+            <option value="bestsellers" {% if 'bestsellers' == module_type %}selected{% endif %}>
+                {{ text_module_type_bestsellers }}
+            </option>
+            <option value="sales" {% if 'sales' == module_type %}selected{% endif %}>
+                {{ text_module_type_sales }}
+            </option>
+        </select>
+        {% if error_module_type %}
+            <div class="invalid-feedback d-block">{{ error_module_type }}</div>
+        {% endif %}
+        <div class="form-text">{{ help_module_type }}</div>
+    </div>
+</div>
+
+{# --- Kategoria (Pojawia się dla latest, bestsellers, sales) --- #}
+<div class="row mb-3 category-select-container">
+    <label for="input-category" class="col-sm-2 col-form-label">{{ entry_category }}</label>
+    <div class="col-sm-10">
+        <select name="category_id" id="input-category" class="form-select">
+            {% for category in categories %}
+                <option value="{{ category.category_id }}" {% if category.category_id == category_id %}selected{% endif %}>{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <div class="form-text">{{ help_category }}</div>
+    </div>
+</div>
+
+{# --- Grupa Opcji do Wyświetlenia --- #}
+<div class="row mb-3">
+    <label for="input-option-group" class="col-sm-2 col-form-label">{{ entry_option_group }}</label>
+    <div class="col-sm-10">
+        <select name="option_group_id" id="input-option-group" class="form-select">
+            {% for option_group in option_groups %}
+                <option value="{{ option_group.option_id }}" {% if option_group.option_id == option_group_id %}selected{% endif %}>{{ option_group.name }}</option>
+            {% endfor %}
+        </select>
+        <div class="form-text">{{ help_option_group }}</div>
+    </div>
+</div>
+
+<div class="row mb-3 required">
+    <label for="input-limit" class="col-sm-2 col-form-label">{{ entry_limit }}</label>
+    <div class="col-sm-10">
+        <input type="number" name="limit" value="{{ limit }}" placeholder="{{ entry_limit }}" id="input-limit" class="form-control"/>
+    </div>
+</div>
+
+<div class="row mb-3 required">
+    <label for="input-entry_image_width" class="col-sm-2 col-form-label">{{ entry_image_width }}</label>
+    <div class="col-sm-10">
+        <input type="number" name="entry_image_width" value="{{ entry_image_width }}" placeholder="{{ entry_entry_image_width }}" id="input-entry_image_width" class="form-control"/>
+    </div>
+</div>
+
+<div class="row mb-3 required">
+    <label for="input-entry_image_height" class="col-sm-2 col-form-label">{{ entry_image_height }}</label>
+    <div class="col-sm-10">
+        <input type="number" name="entry_image_height" value="{{ entry_image_height }}" placeholder="{{ entry_entry_image_height }}" id="input-entry_image_height" class="form-control"/>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+{% if session.css %}
+    {% for css in session.css %}
+        <link href="{{ css }}" rel="stylesheet" type="text/css" />
+    {% endfor %}
+{% endif %}
+
+<div {% if attr_ID %}{{ attr_ID }}{% endif %}class="dc-curtain-products">
+    <div class="container">
+
+        {% if mod_title %}
+            <div class="dc-curtain-products-header">
+                <h2>{{ mod_title }}</h2>
+            </div>
+        {% endif %}
+
+        {% if mod_description %}
+            <div class="dc-curtain-products-description">
+                {{ mod_description }}
+            </div>
+        {% endif %}
+
+        <div class="row dc-curtain-products-row">
+            {% if products %}
+                {% for product in products %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 product-grid-item {% if (loop.index % 3) == 2 %}dc-curtain-products-offset{% endif %}">
+                        <div class="dc-curtain-products-item" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+                            <figure>
+                                <a href="{{ product.href }}">
+                                    <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" />
+                                </a>
+                                <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+                                
+                                <figcaption>
+                                    <a href="{{ product.href }}"><h3>{{ product.name }}</h3></a>
+                                    <div class="dc-curtain-products-interface">
+                                        {% if product.display_options %}
+                                            {% for option in product.display_options %}
+                                                <span>{{ option.name }}</span>
+                                            {% endfor %}
+                                        {% endif %}
+
+                                        <form method="post" data-oc-toggle="ajax" data-oc-load="{{ cart }}" data-oc-target="#cart" class="dc-curtain-products-form">
+                                            <div class="button-group">
+                                                <button type="submit" formaction="{{ cart_add }}" class="dc-curtain-products-btn"><i class="fa fa-shopping-cart"></i></button>
+                                                <button type="submit" formaction="{{ wishlist_add }}" class="dc-curtain-products-btn"><i class="fa fa-heart"></i></button>
+                                                <button type="submit" formaction="{{ compare_add }}" class="dc-curtain-products-btn"><i class="fa fa-exchange"></i></button>
+                                            </div>
+
+                                            <input type="hidden" name="product_id" value="{{ product.product_id }}"/> <input type="hidden" name="quantity" value="{{ product.minimum }}"/>
+                                        </form>
+                                    </div>
+                                </figcaption>
+
+                                <div class="dc-curtain-products-price-panel">
+                                    {% if product.rating %}
+                                        <div class="rating">
+                                            {% for i in 1..5 %}
+                                                {% if product.rating < i %}
+                                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                                {% else %}
+                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+
+                                    {% if product.price %}
+                                        <p class="price">
+                                            {% if not product.special %}
+                                                {{ product.price }}
+                                            {% else %}
+                                                <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+                                            {% endif %}
+                                        </p>
+                                    {% endif %}
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% if session.js %}
+    {% for js in session.js %}
+        <script src="{{ js }}" type="text/javascript"></script>
+    {% endfor %}
+{% endif %}
